@@ -8,21 +8,21 @@ import CustomImage from './image';
 const Product: FC<{ product: ProductType }> = ({ product }) => {
     return (
         <Link
-            href={`/product/${product.id}`}
-            className='h-96 flex flex-col p-6 rounded-lg group hover:scale-105 transition-transform ease-out duration-200 border'
+            href={`/(.)product/${product.id}`}
+            className='group flex h-96 flex-col rounded-lg border p-6 transition-transform duration-200 ease-out hover:scale-105'
         >
             <div className='relative max-h-80 flex-1'>
                 <CustomImage product={product} fill />
             </div>
 
-            <h3 className='tracking-widest text-indigo-500 text-xs font-medium title-font mt-5'>
+            <h3 className='title-font mt-5 text-xs font-medium tracking-widest text-indigo-500'>
                 {product.category}
             </h3>
-            <div className='font-semibold flex items-center justify-between mt-4 mb-1'>
+            <div className='mt-4 mb-1 flex items-center justify-between font-semibold'>
                 <p className='w-44 truncate'>{product.title}</p>
                 <p>${product.price}</p>
             </div>
-            <p className='leading-relaxed text-base line-clamp-2'>{product.description}</p>
+            <p className='line-clamp-2 text-base leading-relaxed'>{product.description}</p>
         </Link>
     );
 };
