@@ -1,14 +1,17 @@
+import Image from 'next/image';
 import React from 'react';
 
 const Hero = () => {
   return (
     <section className="text-gray-400 bg-white body-font">
-      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-          <img
-            className="object-cover object-center rounded"
+          <Image
+            className="h-auto w-full rounded object-cover object-center"
             alt="hero"
             src="https://dummyimage.com/720x600"
+            width={720}
+            height={600}
           />
         </div>
         <div className="lg:grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
