@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar';
+import { ReactNode } from 'react';
 
 const monsterrat = Montserrat({ subsets: ['latin'], display: 'swap' });
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
     return (
         <html lang='en'>

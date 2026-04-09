@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'dummyimage.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'api.escuelajs.co',
+            },
         ],
     },
 };
