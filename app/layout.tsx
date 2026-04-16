@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar';
 import { ReactNode } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // CSS ni unutmang!
+import Footer from '@/components/footer';
 
 const monsterrat = Montserrat({ subsets: ['latin'], display: 'swap' });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
                 <Navbar />
                 <ToastContainer />
                 {children}
+                <Footer />
             </body>
         </html>
     );
