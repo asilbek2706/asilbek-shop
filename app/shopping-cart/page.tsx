@@ -8,9 +8,11 @@ import ReactStars from 'react-stars';
 
 const ShoppingCart = () => {
     const [total, setTotal] = useState<number>(0);
-    const [products, setProducts] = useState<ProductType[]>(
-        JSON.parse(localStorage.getItem('carts') || '[]')
-    );
+    const [products, setProducts] = useState<ProductType[]>([]);
+
+    useEffect(() => {
+        setProducts(JSON.parse(localStorage.getItem('carts') || '[]'));
+    }, []);
 
     const removeProduct = (id: number) => {
         const updatedCart = products.filter((product) => product.id !== id);
