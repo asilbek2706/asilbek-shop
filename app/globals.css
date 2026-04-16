@@ -3,5 +3,13 @@
 @layer components {
 }
 .button {
-  @apply border px-5 md:px-10 py-2.5 rounded font-semibold duration-200 ease-out;
+    @apply rounded border px-5 py-2.5 font-semibold duration-200 ease-out md:px-10;
+}
+
+@layer utilities {
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }

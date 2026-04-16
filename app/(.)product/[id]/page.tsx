@@ -82,34 +82,6 @@ const ProductDetailedPage = () => {
                                             <p>{product?.rating.rate}</p>
                                             {product?.rating.rate && (
                                                 <div className={'mr-6 ml-2 flex items-center'}>
-                                                    {/*         {Array.from(
-                                                        {
-                                                            length: Math.floor(product.rating.rate),
-                                                        },
-                                                        (_, i) => (
-                                                            <StarIcon
-                                                                key={i}
-                                                                className={
-                                                                    'h-4 w-4 text-yellow-500'
-                                                                }
-                                                            />
-                                                        )
-                                                    )}
-                                                    {Array.from(
-                                                        {
-                                                            length:
-                                                                5 - Math.floor(product.rating.rate),
-                                                        },
-                                                        (_, i) => (
-                                                            <StarIconOutline
-                                                                key={i}
-                                                                className={
-                                                                    'h-4 w-4 text-yellow-500'
-                                                                }
-                                                            />
-                                                        )
-                                                    )}*/}
-
                                                     <ReactStars
                                                         value={product.rating.rate}
                                                         edit={false}
@@ -125,6 +97,7 @@ const ProductDetailedPage = () => {
                                                 See all {product?.rating.count} reviews
                                             </p>
                                         </div>
+
                                         <p className={'line-clamp-5 text-sm'}>
                                             {product?.description}
                                         </p>
