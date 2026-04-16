@@ -2,11 +2,51 @@
 
 import CustomImage from '@/components/image';
 import { ProductType } from '@/interfaces';
+import { useState } from 'react';
 import ReactStars from 'react-stars';
 
 const ShoppingCart = () => {
-    const products: ProductType[] = JSON.parse(localStorage.getItem('carts') || '[]');
-    console.log(products);
+    const [products, setProducts] = useState<ProductType[]>(
+        JSON.parse(localStorage.getItem('carts') || '[]')
+    );
+
+    const removeProduct = (id: number) => {
+        const updatedCart = products.filter((product) => product.id !== id);
+        localStorage.setItem('carts', JSON.stringify(updatedCart));
+        setProducts(updatedCart);
+    };
+
+    const handleIncrement = (id: number) => {
+        const updatedCart = products.map((product) => {
+            if (product.id === id) {
+                return { ...product, quantity: product.quantity + 1 };
+            }
+
+            return product;
+        });
+
+        localStorage.setItem('carts', JSON.stringify(updatedCart));
+        setProducts(updatedCart);
+    };
+
+    const handleDecrement = (id: number) => {
+        const existProduct = products.find((product) => product.id === id);
+
+        if (existProduct?.quantity === 1) {
+            removeProduct(existProduct.id);
+        } else {
+            const updatedCart = products.map((product) => {
+                if (product.id === id) {
+                    return { ...product, quantity: product.quantity - 1 };
+                }
+
+                return product;
+            });
+
+            localStorage.setItem('carts', JSON.stringify(updatedCart));
+            setProducts(updatedCart);
+        }
+    };
 
     return (
         <div className='h-screen bg-gray-100 pt-20'>
@@ -51,7 +91,10 @@ const ShoppingCart = () => {
                                 </div>
                                 <div className='mt-4 flex justify-between sm:mt-0 sm:block sm:space-y-6 sm:space-x-6'>
                                     <div className='flex items-center border-gray-100'>
-                                        <span className='cursor-pointer rounded-l bg-gray-100 px-3.5 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50'>
+                                        <span
+                                            className='cursor-pointer rounded-l bg-gray-100 px-3.5 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50'
+                                            onClick={() => handleDecrement(product.id)}
+                                        >
                                             {' '}
                                             -{' '}
                                         </span>
@@ -61,7 +104,10 @@ const ShoppingCart = () => {
                                             value={product.quantity}
                                             min='1'
                                         />
-                                        <span className='cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50'>
+                                        <span
+                                            className='cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50'
+                                            onClick={() => handleIncrement(product.id)}
+                                        >
                                             {' '}
                                             +{' '}
                                         </span>
@@ -80,6 +126,7 @@ const ShoppingCart = () => {
                                             stroke-width='1.5'
                                             stroke='currentColor'
                                             className='h-5 w-5 cursor-pointer duration-150 hover:text-red-500'
+                                            onClick={() => removeProduct(product.id)}
                                         >
                                             <path
                                                 stroke-linecap='round'
