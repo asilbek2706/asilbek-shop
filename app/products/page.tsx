@@ -3,9 +3,22 @@ import Feature from '@/components/feature';
 import Product from '@/components/product';
 import { ProductType } from '@/interfaces';
 
+export const dynamic = 'force-dynamic';
+
 const ProductsPage = async () => {
-    const res = await fetch('https://fakestoreapi.com/products');
-    const products: ProductType[] = await res.json();
+    let products: ProductType[] = [];
+
+    try {
+        const res = await fetch('https://fakestoreapi.com/products', {
+            cache: 'no-store',
+        });
+
+        if (res.ok) {
+            products = (await res.json()) as ProductType[];
+        }
+    } catch {
+        products = [];
+    }
 
     return (
         <main className='mx-auto min-h-screen max-w-7xl px-8 xl:px-0'>
