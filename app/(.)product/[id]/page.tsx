@@ -6,6 +6,7 @@ import { ProductType } from '@/interfaces';
 import { Dialog } from '@headlessui/react';
 import CustomImage from '@/components/image';
 import ReactStars from 'react-stars';
+import { toast } from 'react-toastify';
 
 const ProductDetailedPage = () => {
     const [loading, setLoading] = useState(false);
@@ -15,6 +16,24 @@ const ProductDetailedPage = () => {
     const { id } = useParams();
     const router = useRouter();
 
+    const handleClick = () => {
+        const products: ProductType[] = JSON.parse(localStorage.getItem('carts') || '[]');
+
+        const isExistProduct = products.find((c) => c.id === product?.id);
+        if (isExistProduct) {
+            const updatedData = products.map((c) => {
+                if (c.id === product?.id) {
+                    return { ...c, quantity: c.quantity + 1 };
+                }
+                return c;
+            });
+            localStorage.setItem('carts', JSON.stringify(updatedData));
+        } else {
+            const data = [...products, { ...product, quantity: 1 }];
+            localStorage.setItem('carts', JSON.stringify(data));
+        }
+        toast('Product added to your bag!');
+    };
     useEffect(() => {
         async function getData() {
             setLoading(true);
@@ -115,6 +134,7 @@ const ProductDetailedPage = () => {
                                             className={
                                                 'button w-full border-transparent bg-blue-600 text-white hover:border-blue-600 hover:bg-transparent hover:text-black'
                                             }
+                                            onClick={handleClick}
                                         >
                                             Add to bag
                                         </button>

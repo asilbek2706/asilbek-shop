@@ -3,6 +3,8 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar';
 import { ReactNode } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // CSS ni unutmang!
 
 const monsterrat = Montserrat({ subsets: ['latin'], display: 'swap' });
 
@@ -20,6 +22,7 @@ export default function RootLayout({
         <html lang='en'>
             <body className={monsterrat.className}>
                 <Navbar />
+                <ToastContainer />
                 {children}
             </body>
         </html>

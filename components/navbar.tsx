@@ -16,12 +16,11 @@ const Navbar = () => {
                         All products
                     </Link>
                 </nav>
-                <button className='button border-transparent bg-blue-600 text-white hover:border-blue-600 hover:bg-transparent hover:text-black'>
-                    Log in
-                </button>
-                <button className='button border-blue-600 bg-transparent hover:border-transparent hover:bg-blue-600 hover:text-white'>
-                    Sign up
-                </button>
+                <Link href={'/shopping-cart'}>
+                    <button className='button border-transparent bg-blue-600 text-white hover:border-blue-600 hover:bg-transparent hover:text-black'>
+                        My bag
+                    </button>
+                </Link>
             </div>
         </header>
     );
